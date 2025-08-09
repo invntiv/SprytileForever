@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="sprytile-logo.png?raw=true" height="100px"/>
+    <img src="sprytile-forever-logo.png?raw=true" height="100px"/>
     <h1 align="center">SPRYTILE FOREVER</h1>
     <h2 align="center">Fork of Sprytile Painter for Blender 4.3</h2>
     <h4 align="center">
