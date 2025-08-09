@@ -14,9 +14,6 @@
 * UV painting: Create your mesh with other Blender tools, then quickly UV map them to your tiles. Spend less time in the UV editor.
 * Pixel grid tools: Keep your mesh aligned to the grid with pixel translation, move vertices around with confidence.
 
-### Demo:
-
-![Timelapse](https://img.itch.io/aW1hZ2UvOTg5NjYvNTE3NTczLmdpZg==/250x600/mDFwN0.gif)
 
 ### Download:
 
