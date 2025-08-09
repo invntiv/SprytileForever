@@ -1,5 +1,4 @@
 import bpy
-import bgl
 import blf
 import bmesh
 import math
@@ -17,7 +16,7 @@ from datetime import datetime
 from os import path
 import sprytile_modal
 import sprytile_preview
-import addon_updater_ops
+# import addon_updater_ops
 
 
 def get_build_vertices(position, x_vector, y_vector, up_vector, right_vector):
@@ -760,11 +759,11 @@ class UTIL_OP_SprytileStartTool(bpy.types.Operator):
         return self.invoke(context, None)
 
     def invoke(self, context, event):
-        if self.mode is 0:
+        if self.mode == 0:
             context.scene.sprytile_data.paint_mode = 'SET_NORMAL'
-        if self.mode is 1:
+        if self.mode == 1:
             context.scene.sprytile_data.paint_mode = 'PAINT'
-        if self.mode is 2:
+        if self.mode == 2:
             context.scene.sprytile_data.paint_mode = 'MAKE_FACE'
         bpy.ops.sprytile.modal_tool('INVOKE_REGION_WIN')
         return {'FINISHED'}
@@ -1335,7 +1334,7 @@ class UTIL_OP_SprytileMakeDoubleSided(bpy.types.Operator):
 
         mesh.faces.index_update()
         mesh.faces.ensure_lookup_table()
-        bmesh.update_edit_mesh(context.object.data, True, True)
+        bmesh.update_edit_mesh(context.object.data)
         return {'FINISHED'}
 
 
@@ -2013,7 +2012,7 @@ class VIEW3D_PT_SprytileWorkflowPanel(bpy.types.Panel):
             return context.object.mode == 'EDIT'
 
     def draw(self, context):
-        addon_updater_ops.check_for_update_background()
+        # addon_updater_ops.check_for_update_background()
 
         layout = self.layout
 

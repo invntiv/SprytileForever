@@ -1,13 +1,13 @@
 bl_info = {
-    "name": "Sprytile Painter",
-    "author": "Jeiel Aranal",
+    "name": "Sprytile Forever",
+    "author": "Jeiel Aranal, Invntiv",
     # Final version number must be two numerals to support x.x.00
     "version": (0, 5, 20),
-    "blender": (2, 80, 0),
-    "description": "A utility for creating tile based low spec scenes with paint/map editor tools",
+    "blender": (4, 3, 0),
+    "description": "A utility for creating tile based low spec scenes with paint/map editor tools. Fork of Sprytile by Jeiel Aranal.",
     "location": "View3D > UI panel > Sprytile",
     "wiki_url": "http://itch.sprytile.xyz",
-    "tracker_url": "https://github.com/ChemiKhazi/Sprytile/issues",
+    "tracker_url": "https://github.com/invntiv/SprytileForever/issues",
     "category": "Paint"
 }
 
@@ -40,7 +40,9 @@ import bpy.utils.previews
 from bpy.app.handlers import persistent
 #from . import addon_updater_ops
 from bpy.utils.toolsystem import ToolDef
-from bpy.props import *
+from bpy.props import (BoolProperty, IntProperty, FloatProperty, StringProperty,
+                         EnumProperty, IntVectorProperty, FloatVectorProperty,
+                         BoolVectorProperty, CollectionProperty, PointerProperty)
 import rna_keymap_ui
 
 
@@ -390,7 +392,7 @@ class SprytileSceneSettings(bpy.types.PropertyGroup):
         default=False
     )
 
-    allow_backface: bpy.props.BoolProperty(
+    allow_backface: BoolProperty(
         name="Backface",
         description="Should Sprytile work on backfaces",
         default=False,
@@ -406,7 +408,7 @@ class SprytileSceneSettings(bpy.types.PropertyGroup):
             self["auto_reload"] = False
         return self["auto_reload"]
 
-    auto_reload: bpy.props.BoolProperty(
+    auto_reload: BoolProperty(
         name="Auto",
         description="Automatically reload images every few seconds",
         default=False,
@@ -589,8 +591,8 @@ class SprytileMaterialData(bpy.types.PropertyGroup):
 
 
 class SprytileGridDisplay(bpy.types.PropertyGroup):
-    mat_id: bpy.props.StringProperty(default="")
-    grid_id: bpy.props.IntProperty(default=-1)
+    mat_id: StringProperty(default="")
+    grid_id: IntProperty(default=-1)
 
     def get_mat_name(self):
         if self.mat_id == "":
@@ -616,15 +618,15 @@ class SprytileGridDisplay(bpy.types.PropertyGroup):
 
         return self.parent_mat_name
 
-    mat_name: bpy.props.StringProperty(
+    mat_name: StringProperty(
         get=get_mat_name,
         set=set_mat_name
     )
 
-    parent_mat_name : bpy.props.StringProperty(default="")
-    parent_mat_id : bpy.props.StringProperty(default="")
+    parent_mat_name : StringProperty(default="")
+    parent_mat_id : StringProperty(default="")
     
-    search_name : bpy.props.StringProperty(
+    search_name : StringProperty(
         get=get_search_name,
         set=None
     )
@@ -653,8 +655,8 @@ class SprytileGridList(bpy.types.PropertyGroup):
         if target_entry.grid_id != -1:
             bpy.context.object.sprytile_gridid = target_entry.grid_id
 
-    display: bpy.props.CollectionProperty(type=SprytileGridDisplay)
-    idx: bpy.props.IntProperty(
+    display: CollectionProperty(type=SprytileGridDisplay)
+    idx: IntProperty(
         default=0,
         get=get_idx,
         set=set_idx
@@ -674,12 +676,12 @@ class PROP_OP_SprytilePropsSetup(bpy.types.Operator):
 
     @staticmethod
     def props_setup():
-        bpy.types.Scene.sprytile_data = bpy.props.PointerProperty(type=SprytileSceneSettings)
-        bpy.types.Scene.sprytile_mats = bpy.props.CollectionProperty(type=SprytileMaterialData)
+        bpy.types.Scene.sprytile_data = PointerProperty(type=SprytileSceneSettings)
+        bpy.types.Scene.sprytile_mats = CollectionProperty(type=SprytileMaterialData)
 
-        bpy.types.Scene.sprytile_list = bpy.props.PointerProperty(type=SprytileGridList)
+        bpy.types.Scene.sprytile_list = PointerProperty(type=SprytileGridList)
 
-        bpy.types.Scene.sprytile_ui = bpy.props.PointerProperty(type=sprytile_gui.SprytileGuiData)
+        bpy.types.Scene.sprytile_ui = PointerProperty(type=sprytile_gui.SprytileGuiData)
 
         bpy.types.Object.sprytile_gridid = IntProperty(
             name="Grid ID",
@@ -723,7 +725,7 @@ class PROP_OP_SprytilePropsTeardown(bpy.types.Operator):
 class SprytileAddonPreferences(bpy.types.AddonPreferences):
     bl_idname = __package__
 
-    preview_transparency: bpy.props.FloatProperty(
+    preview_transparency: FloatProperty(
         name="Preview Alpha",
         description="Transparency level of build preview cursor",
         default=0.8,
@@ -731,26 +733,26 @@ class SprytileAddonPreferences(bpy.types.AddonPreferences):
         max=1
     )
 
-    auto_adjust_viewport_shading: bpy.props.BoolProperty(
+    auto_adjust_viewport_shading: BoolProperty(
         name="Automatically switch viewport to Material Preview mode",
         description="If enabled, viewport shading mode will change to Material Preview while using Sprytile tools",
         default=True,
     )
 
-    auto_pixel_viewport: bpy.props.BoolProperty(
+    auto_pixel_viewport: BoolProperty(
         name="Automatically setup pixel viewport",
         description="If enabled, loading a tileset will automatically setup the pixel viewport.\nDisable if you're not going for a flatshaded look",
         default=False,
     )
 
-    default_pixel_density: bpy.props.IntProperty(
+    default_pixel_density: IntProperty(
         name="Pixel Density",
         description="How many pixels are displayed in one world unit",
         default=32,
         min=8
     )
 
-    default_grid: bpy.props.IntVectorProperty(
+    default_grid: IntVectorProperty(
         name="Grid Size",
         description="Tileset grid size, in pixels",
         min=1,
@@ -759,7 +761,7 @@ class SprytileAddonPreferences(bpy.types.AddonPreferences):
         default=(32, 32)
     )
 
-    default_pad_offset: bpy.props.FloatProperty(
+    default_pad_offset: FloatProperty(
         name="Subpixel Padding",
         description="Default subpixel edge padding for tilesets",
         default=0.05,
@@ -767,7 +769,7 @@ class SprytileAddonPreferences(bpy.types.AddonPreferences):
         max=0.20
     )
 
-    auto_grid_setup: bpy.props.BoolProperty(
+    auto_grid_setup: BoolProperty(
         name="Automatically setup grid",
         description="If enabled, loading a tileset will set the grid size to the chosen pixel density.",
         default=True,

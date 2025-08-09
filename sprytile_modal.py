@@ -456,7 +456,7 @@ class VIEW3D_OP_SprytileModalTool(bpy.types.Operator):
             el.index_update()
             el.ensure_lookup_table()
 
-        bmesh.update_edit_mesh(context.object.data, True, True)
+        bmesh.update_edit_mesh(context.object.data)
 
         # Update the collision BVHTree with new data
         self.refresh_mesh = True
@@ -830,6 +830,7 @@ class VIEW3D_OP_SprytileModalTool(bpy.types.Operator):
         VIEW3D_OP_SprytileModalTool.no_undo = False
         self.update_bmesh_tree(context)
         self.refresh_mesh = False
+        self.draw_preview = False
 
         # Setup Rx Observer and Observables
         self.rx_observer = None
@@ -927,7 +928,7 @@ class VIEW3D_OP_SprytileModalTool(bpy.types.Operator):
         self.tree = None
         self.tools = None
         if context.object.mode == 'EDIT':
-            bmesh.update_edit_mesh(context.object.data, True, True)
+            bmesh.update_edit_mesh(context.object.data)
 
 
 # module classes

@@ -1,6 +1,7 @@
 <p align="center">
     <img src="sprytile-logo.png?raw=true" height="100px"/>
-    <h1 align="center">Sprytile Painter</h1>
+    <h1 align="center">SPRYTILE FOREVER</h1>
+    <h2 align="center">Fork of Sprytile Painter for Blender 4.3</h2>
     <h4 align="center">
         A <img src="https://download.blender.org/institute/logos/blender-socket.png" height="20px"/> addon for creating tile based low spec 3D scenes. (Unofficial port for blender 2.8)
     </h4>
@@ -19,7 +20,7 @@
 
 ### Download:
 
-Download from [releases](https://github.com/ologon/Sprytile/releases).
+Download from [releases](https://github.com/invntiv/SprytileForever/releases).
 
 ### Getting Started:
 
@@ -33,8 +34,9 @@ Download from [releases](https://github.com/ologon/Sprytile/releases).
 
 ### Issue/Feature requests:
 
-Bug reports for this port can be submitted to [GitHub issues](https://github.com/ologon/Sprytile/issues)
+Bug reports for this port can be submitted to [GitHub issues](https://github.com/invntiv/SprytileForever/issues)
 
 ### Acknowledgments:
+Blender 4.3 porting work done by [INVNTIV](https://github.com/invntiv)
 
 The bulk of Blender 2.8 porting work by was done by [Yonnji](https://github.com/Yonnji) and [ologon](https://github.com/ologon), with additional contributions by [brandy92](https://github.com/brandy92)

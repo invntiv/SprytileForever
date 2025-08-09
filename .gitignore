@@ -6,3 +6,4 @@ __pycache__/
 *.iml
 sprytile_updater/
 */updater_status.json
+CLAUDE.md

@@ -86,6 +86,18 @@ class ToolPaint:
 
         if face_up is not None and face_right is not None:
             rotate_normal = face_right.cross(face_up)
+            
+            # For paint mode, ensure consistent orientation by checking against the face normal
+            mesh = bmesh.from_edit_mesh(context.object.data)
+            face = mesh.faces[face_index]
+            world_matrix = context.object.matrix_world
+            normal_inv = world_matrix.copy().inverted().transposed()
+            face_normal = normal_inv @ face.normal.copy()
+            
+            # If the calculated normal is opposite to face normal, flip the right vector
+            if rotate_normal.dot(face_normal) < 0:
+                face_right *= -1
+                rotate_normal = face_right.cross(face_up)
 
         if face_up is not None:
             up_vector = face_up

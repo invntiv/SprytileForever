@@ -1,12 +1,13 @@
 import bpy
 from . import sprytile_utils
 from bpy.types import Panel, UIList
+from bpy.props import BoolProperty
 
 
 class VIEW3D_UL_SprytileMaterialGridList(bpy.types.UIList):
-    use_order_name : bpy.props.BoolProperty(default=False, name="Order by Name")
-    use_order_invert : bpy.props.BoolProperty(default=False, name="Reverse Order")
-    obj_mats_only : bpy.props.BoolProperty(default=False, name="Object Materials Only", description="Show only materials already added to the selected object")
+    use_order_name : BoolProperty(default=False, name="Order by Name")
+    use_order_invert : BoolProperty(default=False, name="Reverse Order")
+    obj_mats_only : BoolProperty(default=False, name="Object Materials Only", description="Show only materials already added to the selected object")
 
     def draw_item(self, context, layout, data, item, icon, active_data, active_propname, index):
         if item.mat_id != "":
