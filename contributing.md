@@ -1,8 +1,8 @@
-# Contributing to Sprytile
+# Contributing to Sprytile Forever
 
 Hi! Thanks for wanting to help out!
 
-There are many ways to contribute to Sprytile, and all are welcome!
+There are many ways to contribute to Sprytile Forever, and all are welcome!
 
 - Bug reports / feature issues
 - Pull requests
@@ -10,16 +10,16 @@ There are many ways to contribute to Sprytile, and all are welcome!
 
 ## Bug reports, opening issues
 
-The [issue tracker is open](https://github.com/ChemiKhazi/Sprytile/issues) and I'd love to get your feedback! Whether it's a bug report or a feature request, please feel free to open an issue.
+The [issue tracker is open](https://github.com/invntiv/SprytileForever/issues) and I'd love to get your feedback! Whether it's a bug report or a feature request, please feel free to open an issue.
  
-If you're not familiar with GitHub, bug reports and suggestions are also welcome on the [Sprytile community board](https://chemikhazi.itch.io/sprytile/community).
+If you're not familiar with GitHub, bug reports and suggestions are also welcome on the [Sprytile community board](https://chemikhazi.itch.io/sprytile/community). [NOTE: this is the original community and is no longer being maintained. I will likely start a new one, but for now the original [Discord](http://discord.sprytile.xyz/) is still partially active]
  
 ## Submitting a pull request
 
-* [Fork](https://github.com/thesecretlab/YarnSpinner/fork) and clone the repository
+* [Fork](https://github.com/invntiv/SprytileForever/fork) and clone the repository
 * Create a new branch: git checkout -b my-branch-name
 * Make your changes
-* Push to your fork and [submit a pull request](https://github.com/ChemiKhazi/Sprytile/compare)
+* Push to your fork and [submit a pull request](https://github.com/invntiv/SprytileForever/compare)
 * Pat your self on the back and wait for your pull request to be reviewed.
 
 If you're unfamiliar with how pull requests work, [GitHub's documentation on them](https://help.github.com/articles/using-pull-requests/) is very good.

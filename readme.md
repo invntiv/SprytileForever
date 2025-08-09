@@ -3,7 +3,7 @@
     <h1 align="center">SPRYTILE FOREVER</h1>
     <h2 align="center">Fork of Sprytile Painter for Blender 4.3</h2>
     <h4 align="center">
-        A <img src="https://download.blender.org/institute/logos/blender-socket.png" height="20px"/> addon for creating tile based low spec 3D scenes. (Unofficial port for blender 2.8)
+        A <img src="https://download.blender.org/institute/logos/blender-socket.png" height="20px"/> addon for creating tile based low spec 3D scenes. (Unofficial port for blender 4.3)
     </h4>
   <br>
 </p>
@@ -26,8 +26,9 @@ Download from [releases](https://github.com/invntiv/SprytileForever/releases).
 
 ### Community:
 
-* Chat with the fellow users in the [Discord server](http://discord.sprytile.xyz/)
-* Showcase your work or ask for support in the [forum](https://chemikhazi.itch.io/sprytile/community)
+* Reach me on [X](https://x.com/_invntiv_)
+* Chat with the fellow users in the [Discord server](http://discord.sprytile.xyz/) [Note: This is the original Discord - as there is no guarantee this will remain active/available, I may spin up a new one for this revival project].
+* Showcase your work or ask for support in the [forum](https://chemikhazi.itch.io/sprytile/community) [Note: As above, this is the original community and is likely deprecated...]
 
 ### Issue/Feature requests:
 
