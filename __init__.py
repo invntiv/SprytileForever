@@ -1,8 +1,8 @@
 bl_info = {
     "name": "Sprytile Forever",
-    "author": "Jeiel Aranal, Invntiv",
+    "author": "Jeiel Aranal, INVNTIV",
     # Final version number must be two numerals to support x.x.00
-    "version": (0, 5, 20),
+    "version": (0, 1, 00),
     "blender": (4, 3, 0),
     "description": "A utility for creating tile based low spec scenes with paint/map editor tools. Fork of Sprytile by Jeiel Aranal.",
     "location": "View3D > UI panel > Sprytile",
