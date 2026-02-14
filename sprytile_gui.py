@@ -518,12 +518,25 @@ class VIEW3D_OP_SprytileGui(bpy.types.Operator):
     @staticmethod
     def setup_offscreen(self, context):
         VIEW3D_OP_SprytileGui.offscreen = VIEW3D_OP_SprytileGui.setup_gpu_offscreen(self, context)
-        if VIEW3D_OP_SprytileGui.offscreen:
-            VIEW3D_OP_SprytileGui.texture = VIEW3D_OP_SprytileGui.offscreen.color_texture
+
+        offscreen = VIEW3D_OP_SprytileGui.offscreen
+        if offscreen:
+            # Blender 4.x
+            if hasattr(offscreen, "color_texture"):
+                VIEW3D_OP_SprytileGui.texture = offscreen.color_texture
+
+            # Blender 5.x
+            elif hasattr(offscreen, "texture_color"):
+                VIEW3D_OP_SprytileGui.texture = offscreen.texture_color
+
+            else:
+                VIEW3D_OP_SprytileGui.texture = None
         else:
             self.report({'ERROR'}, "Error initializing offscreen buffer. More details in the console")
             return {'CANCELLED'}
+
         return None
+
 
     @staticmethod
     def setup_gpu_offscreen(self, context):
