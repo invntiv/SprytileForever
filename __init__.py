@@ -48,27 +48,30 @@ import rna_keymap_ui
 
 class SprytileSceneSettings(bpy.types.PropertyGroup):
     def set_normal(self, value):
-        if "lock_normal" not in self.keys():
-            self["lock_normal"] = False
+        # Garantir valor padrão seguro
+        lock = self.get("lock_normal", False)
+        current = self.get("normal_mode", 3)
 
-        if self["lock_normal"] is True:
+        if lock:
             return
-        if self["normal_mode"] == value:
-            self["lock_normal"] = not self["lock_normal"]
+
+        if current == value:
+            self["lock_normal"] = not lock
             return
+
         self["normal_mode"] = value
         self["lock_normal"] = True
-        
+
         try:
             bpy.ops.sprytile.axis_update('INVOKE_REGION_WIN')
         except:
             pass
+
         
 
     def get_normal(self):
-        if "normal_mode" not in self.keys():
-            self["normal_mode"] = 3
-        return self["normal_mode"]
+        return self.get("normal_mode", 3)
+
 
     normal_mode : EnumProperty(
         items=[
@@ -120,7 +123,7 @@ class SprytileSceneSettings(bpy.types.PropertyGroup):
     def set_layer(self, value):
         keys = self.keys()
         if "work_layer" not in keys:
-            self["work_layer"] = 1
+            work_layer = 1
 
         current_value = self.get_layer()
         value = list(value)
@@ -130,17 +133,16 @@ class SprytileSceneSettings(bpy.types.PropertyGroup):
 
         for idx in range(len(value)):
             if value[idx]:
-                self["work_layer"] = (idx + 1)
+                work_layer = (idx + 1)
                 break
 
     def get_layer(self):
-        keys = self.keys()
-        if "work_layer" not in keys:
-            self["work_layer"] = 1
+        work_layer = self.get("work_layer", 1)
+
 
         out_value = [False, False]
         index_value_lookup = 1, 2
-        set_idx = index_value_lookup.index(self["work_layer"])
+        set_idx = index_value_lookup.index(work_layer)
         out_value[set_idx] = True
         return out_value
 
@@ -280,9 +282,7 @@ class SprytileSceneSettings(bpy.types.PropertyGroup):
         self.set_align_toggle(value, "bottom")
 
     def get_align_toggle(self, row):
-        if "paint_align" not in self.keys():
-            self["paint_align"] = 5
-        align = self["paint_align"]
+        align = self.get("paint_align", 5)
         if row == 'top':
             return align == 1, align == 2, align == 3
         if row == 'middle':
@@ -404,9 +404,8 @@ class SprytileSceneSettings(bpy.types.PropertyGroup):
             bpy.ops.sprytile.reload_auto('INVOKE_REGION_WIN')
 
     def get_reload(self):
-        if "auto_reload" not in self.keys():
-            self["auto_reload"] = False
-        return self["auto_reload"]
+        return self.get("auto_reload", False)
+
 
     auto_reload: BoolProperty(
         name="Auto",
@@ -500,12 +499,8 @@ class SprytileMaterialGridSettings(bpy.types.PropertyGroup):
         self["padding"] = value
 
     def get_padding(self):
-        if "padding" not in self.keys():
-            try:
-                self["padding"] = (0, 0)
-            except:
-                return (0, 0)
-        return self["padding"]
+        return self.get("padding", (0, 0))
+
 
     padding : IntVectorProperty(
         name="Padding",
@@ -636,9 +631,8 @@ class SprytileGridDisplay(bpy.types.PropertyGroup):
 
 class SprytileGridList(bpy.types.PropertyGroup):
     def get_idx(self):
-        if "idx" not in self.keys():
-            self["idx"] = 0
-        return self["idx"]
+        return self.get("idx", 0)
+
 
     def set_idx(self, value):
         # If the selected index is a material entry
